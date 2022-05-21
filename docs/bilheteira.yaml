@@ -1,8 +1,8 @@
 paths:
-  /users/:
+  /bilheteira/:
     get:
       tags:
-        - User
+        - Bilheteira
       summary: Access to unsecured resource
       security: [] # No security
       produces:
@@ -12,7 +12,7 @@ paths:
           description: Success Message
     post:
       tags:
-        - User
+        - Bilheteira
       summary: test
       security: [] # No security
       produces:
@@ -22,7 +22,7 @@ paths:
           description: Success Message
     put:
       tags:
-        - User
+        - Bilheteira
       summary: test
       security: [] # No security
       produces:
@@ -32,7 +32,7 @@ paths:
           description: Success Message
     delete:
       tags:
-        - User
+        - Bilheteira
       summary: test
       security: [] # No security
       produces:

@@ -8,6 +8,10 @@ app.get("/users", function (req, res) {
   res.send("This resource access is open!");
 });
 
+app.post("/users", function (req, res) {
+  res.send("This resource access is open!");
+});
+
 // start server
 app.listen(port, function () {
   console.log(`app running on localhost:${port}`);
