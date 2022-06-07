@@ -40,3 +40,37 @@ module.exports = {
   getUser,
   deleteUser,
 };
+
+const FilmeModel = require("../Models/filme.model");
+
+exports.getFilmes = (req, res) => {
+  FilmeModel.getAll((err, filmes) => {
+    if (err) res.send(err);
+
+    res.send(filmes);
+  });
+};
+
+exports.getFilmeById = (req, res) => {
+  FilmeModel.getById(+req.params.id, (err, filme) => {
+    if (err) res.send(err);
+
+    res.send(filme);
+  });
+};
+
+exports.createFilme = (req, res) => {
+  FilmeModel.createFilme(req.body, (err, filme) => {
+    if (err) res.send(err);
+
+    res.send(filme);
+  });
+};
+
+exports.deleteFilme = (req, res) => {
+  FilmeModel.deleteFilme(+req.params.id, (err, id) => {
+    if (err) res.send(err);
+
+    res.send({ id });
+  });
+};
