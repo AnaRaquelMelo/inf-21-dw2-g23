@@ -1,53 +1,37 @@
 const express = require("express");
-const cors = require("cors");
+const bodyParser = require("body-parser");
 const app = express();
-const port = 3000;
 
-app.use(cors());
-app.get("/users", function (req, res) {
-  res.send("This resource access is open!");
-});
+const jsonParser = bodyParser.json();
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-app.post("/users", function (req, res) {
-  res.send("This resource access is open!");
-});
+app.use(jsonParser);
+app.use(urlencodedParser);
 
-// start server
-app.listen(port, function () {
-  console.log(`app running on localhost:${port}`);
-});
+const userRoutes = require("./src/Routes/user.route");
+const filmeRoutes = require("./src/Routes/filme.route");
+const receitaRoutes = require("./src/Routes/receita.route");
+const atorRoutes = require("./src/Routes/ator.route");
+const filmeAtorRoutes = require("./src/Routes/filme-ator.route");
+app.use("/api/users", userRoutes);
+app.use("/api/filmes", filmeRoutes);
+app.use("/api/receitas", receitaRoutes);
+app.use("/api/atores", atorRoutes);
+app.use("/api/filme-ator", filmeAtorRoutes);
 
-const basicAuth = require("basic-auth");
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Listen on port ${port}...`));
 
-function auth(req, res, next) {
-  var user = basicAuth(req);
-  if (!user || !user.name || !user.pass) {
-    res.set("WWW-Authenticate", "Basic realm=Authorization Required");
-    res.sendStatus(401);
-    return;
-  }
-  if (user.name === "basicUser" && user.pass === "basicPassword") {
-    next();
-  } else {
-    res.set("WWW-Authenticate", "Basic realm=Authorization Required");
-    res.sendStatus(401);
-    return;
-  }
-}
-
-app.get("/secured", auth, function (req, res) {
-  res.send("This resource access is authenticated!");
-});
 const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
 const swaggerDefinition = {
   openapi: "3.0.0",
   info: {
-    title: "BasicAuthentication_01",
+    title: "INF-21-DW2-G23",
     version: "1.0.0",
-    description: "Example 01 for Basic Authentication",
-    contact: { name: "Your name" },
+    description: "Api with basic authentication for DW2",
+    contact: { name: "Ana Raquel Melo" },
   },
   servers: [{ url: "http://localhost:" + port }],
   components: {

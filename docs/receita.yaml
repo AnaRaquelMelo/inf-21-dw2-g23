@@ -1,9 +1,9 @@
 paths:
-  /api/filmes/:
+  /api/receitas/:
     get:
       tags:
-        - Filme
-      summary: Get All Filmes
+        - Receita
+      summary: Get All Receitas
       security:
         - basicAuth: []
       produces:
@@ -21,20 +21,15 @@ paths:
             schema:
               type: object
               properties:
-                title:
+                pais:
                   type: string
-                release_year:
+                valor:
                   type: integer
-                language:
-                  type: string
-                lenght:
-                  type: integer
-                rating:
-                  type: number
-                  format: float
+                filmeId:
+                  type: integer                
       tags:
-        - Filme
-      summary: Insere um filme
+        - Receita
+      summary: Insere um Receita
       security:
         - basicAuth: []
       produces:
@@ -44,17 +39,17 @@ paths:
           description: Success Message
         401:
           description: Basic Authentication required
-  /api/filmes/{filmeId}:
+  /api/Receitas/{receitaId}:
     get:
       parameters:
         - in: path
-          name: filmeId
+          name: receitaId
           schema:
             type: integer
           required: true
       tags:
-        - Filme
-      summary: Get filme by id
+        - Receita
+      summary: Get Receita by id
       security:
         - basicAuth: []
       produces:
@@ -67,7 +62,7 @@ paths:
     put:
       parameters:
         - in: path
-          name: filmeId
+          name: receitaId
           schema:
             type: integer
           required: true
@@ -78,20 +73,15 @@ paths:
             schema:
               type: object
               properties:
-                title:
+                pais:
                   type: string
-                release_year:
+                valor:
                   type: integer
-                language:
-                  type: string
-                lenght:
+                filmeId:
                   type: integer
-                rating:
-                  type: number
-                  format: float
       tags:
-        - Filme
-      summary: Atualiza filme
+        - Receita
+      summary: Atualiza Receita
       security:
         - basicAuth: []
       produces:
@@ -104,13 +94,13 @@ paths:
     delete:
       parameters:
         - in: path
-          name: filmeId
+          name: receitaId
           schema:
             type: integer
           required: true
       tags:
-        - Filme
-      summary: Delete filme
+        - Receita
+      summary: Delete Receita
       security:
         - basicAuth: []
       produces:
@@ -120,4 +110,3 @@ paths:
           description: Success Message
         401:
           description: Basic Authentication required
-  

@@ -1,9 +1,9 @@
 const mysql = require("mysql");
 
-const db = mysql.createConnection({
-  host: "localhost",
+const dbConn = mysql.createConnection({
+  host: "mysql",
   user: "root",
-  password: "",
+  password: "root",
   database: "dw2",
 });
 
@@ -12,4 +12,4 @@ dbConn.connect(function (error) {
   console.log("Database connected");
 });
 
-module.exports = db;
+module.exports = dbConn;
